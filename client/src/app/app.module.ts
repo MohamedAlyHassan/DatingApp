@@ -25,6 +25,7 @@ import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DataInputComponent } from './_forms/data-input/data-input.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { DataInputComponent } from './_forms/data-input/data-input.component';
     MemberListComponent,
     MemberDetailsComponent,
     ListsComponent,
-    MessagesComponent,
+     MessagesComponent,
     TestErrorsComponent,
     NotFoundComponent,
     ServerErrorComponent,
@@ -44,7 +45,8 @@ import { DataInputComponent } from './_forms/data-input/data-input.component';
     MemberEditComponent,
     PhotoEditorComponent,
     TextInputComponent,
-    DataInputComponent
+    DataInputComponent,
+    MemberMessagesComponent
   ],
   imports: [
     BrowserModule,
