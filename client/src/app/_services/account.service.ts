@@ -1,3 +1,4 @@
+import { PresenceService } from './presence.service';
 import { User } from './../_models/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,7 +14,7 @@ baseUrl =environment.apiUrl;
 private currentUserSource = new ReplaySubject<User>(1);
 currentUser$ = this.currentUserSource.asObservable();
   
-constructor(private http:HttpClient) { }
+constructor(private http:HttpClient, private presence:PresenceService) { }
 
   login(model: any) {
     return this.http.post(this.baseUrl + 'account/login', model).pipe(
@@ -21,6 +22,7 @@ constructor(private http:HttpClient) { }
         const user = response;
         if (user) {
          this.setCurrentUser(user);
+         this.presence.createHubConnection(user);
         }
       })
     )
@@ -31,6 +33,7 @@ constructor(private http:HttpClient) { }
       map((user :User) => {
         if (user) {
         this.setCurrentUser(user);
+        this.presence.createHubConnection(user);
         }
       })
     )
@@ -48,6 +51,7 @@ constructor(private http:HttpClient) { }
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+    this.presence.stopHubConnection();
   }
 
 
